@@ -1,0 +1,1 @@
+export 'package:jaep_movies_app/domain/entities/movie.dart';
