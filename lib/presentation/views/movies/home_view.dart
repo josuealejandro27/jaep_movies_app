@@ -33,13 +33,21 @@ class _HomeViewState extends ConsumerState<HomeView> {
             titlePadding: EdgeInsets.zero,
           ),
         ),
+
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               return Column(
                 children: [
-                  MoviesSlideshow(movies: []),
-                  Text('data'),
+                  MoviesSlideshow(movies: nowPlayingMovies),
+
+                  SizedBox(height: 20,),
+
+                  MovieHorizontalListview(
+                    movies: nowPlayingMovies,
+                    title: 'En Cines',
+                    subTitle: 'A partir de',
+                  ),
                 ],
               );
             },
