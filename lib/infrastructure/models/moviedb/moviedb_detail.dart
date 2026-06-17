@@ -1,59 +1,7 @@
-class MovieDbResponse {
-    final Dates dates;
-    final int page;
-    final List<MovieDb> results;
-    final int totalPages;
-    final int totalResults;
-
-    MovieDbResponse({
-        required this.dates,
-        required this.page,
-        required this.results,
-        required this.totalPages,
-        required this.totalResults,
-    });
-
-    factory MovieDbResponse.fromJson(Map<String, dynamic> json) => MovieDbResponse(
-        dates: Dates.fromJson(json["dates"]),
-        page: json["page"],
-        results: List<MovieDb>.from(json["results"].map((x) => MovieDb.fromJson(x))),
-        totalPages: json["total_pages"],
-        totalResults: json["total_results"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "dates": dates.toJson(),
-        "page": page,
-        "results": List<dynamic>.from(results.map((x) => x.toJson())),
-        "total_pages": totalPages,
-        "total_results": totalResults,
-    };
-}
-
-class Dates {
-    final DateTime maximum;
-    final DateTime minimum;
-
-    Dates({
-        required this.maximum,
-        required this.minimum,
-    });
-
-    factory Dates.fromJson(Map<String, dynamic> json) => Dates(
-        maximum: DateTime.parse(json["maximum"]),
-        minimum: DateTime.parse(json["minimum"]),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "maximum": "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
-        "minimum": "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
-    };
-}
-
-class MovieDb {
+class MovieDbDetail {
     final bool adult;
     final String backdropPath;
-    final List<int> genreIds;
+    final List<String> genreIds;
     final int id;
     final String title;
     final String originalLanguage;
@@ -67,7 +15,7 @@ class MovieDb {
     final double voteAverage;
     final int voteCount;
 
-    MovieDb({
+    MovieDbDetail({
         required this.adult,
         required this.backdropPath,
         required this.genreIds,
@@ -85,10 +33,10 @@ class MovieDb {
         required this.voteCount,
     });
 
-    factory MovieDb.fromJson(Map<String, dynamic> json) => MovieDb(
+    factory MovieDbDetail.fromJson(Map<String, dynamic> json) => MovieDbDetail(
         adult: json["adult"],
         backdropPath: json["backdrop_path"] ?? "https://di-sitebuilder-assets.dealerinspire.com/generic-placeholder.png",
-        genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+        genreIds: List<String>.from(json["genres"].map((x) => x)),
         id: json["id"],
         title: json["title"],
         originalLanguage: json["original_language"],
