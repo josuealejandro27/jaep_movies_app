@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jaep_movies_app/config/config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async{
   
@@ -20,6 +21,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    initializeDateFormatting();
+    
     return MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
