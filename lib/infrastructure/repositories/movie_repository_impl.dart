@@ -1,4 +1,6 @@
 import 'package:jaep_movies_app/domain/domain.dart';
+import 'package:jaep_movies_app/infrastructure/infrastructure.dart';
+import 'package:dio/dio.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
   final MoviesDatasource datasource;
@@ -11,6 +13,12 @@ class MovieRepositoryImpl extends MoviesRepository {
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) {
     return datasource.getNowPlaying(page: page);
+  }
+
+  @override
+  Future<List<Actor>> getActorsByMovie(String movieId) {
+    //TODO: implement getActorsByMovie
+    throw UnimplementedError();
   }
 
   @override
@@ -42,5 +50,4 @@ class MovieRepositoryImpl extends MoviesRepository {
   Future<List<Movie>> searchMovie(String query) {
     return datasource.searchMovie(query);
   }
-  
 }

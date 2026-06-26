@@ -1,9 +1,7 @@
 import 'package:jaep_movies_app/config/config.dart';
 import 'package:jaep_movies_app/domain/domain.dart';
 import 'package:dio/dio.dart';
-import 'package:jaep_movies_app/infrastructure/mappers/movie_mapper.dart';
-import 'package:jaep_movies_app/infrastructure/models/moviedb/moviedb_detail.dart';
-import 'package:jaep_movies_app/infrastructure/models/moviedb/moviedb_response.dart';
+import 'package:jaep_movies_app/infrastructure/infrastructure.dart';
 
 class MoviedbDatasourceImpl extends MoviesDatasource {
   
@@ -39,6 +37,21 @@ class MoviedbDatasourceImpl extends MoviesDatasource {
       return movies;
   }
 
+    @override
+  Future<List<Actor>> getActorsByMovie(String movieId) async{
+    final response = await dio.get(
+      '/movie/$movieId/credits'
+    );
+
+    final credits = MovieDbCredits.fromJson(response.data);
+
+    List<Actor> actors = credits.cast.map(
+      (cast) => ActorMapper.castToEntity(cast)
+    ).toList();
+
+    return actors;
+  }
+  
   @override
   Future<List<Movie>> getPopular({int page = 1}) {
     // TODO: implement getPopular
