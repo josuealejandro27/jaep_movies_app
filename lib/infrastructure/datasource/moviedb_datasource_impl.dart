@@ -2,6 +2,7 @@ import 'package:jaep_movies_app/config/config.dart';
 import 'package:jaep_movies_app/domain/domain.dart';
 import 'package:dio/dio.dart';
 import 'package:jaep_movies_app/infrastructure/infrastructure.dart';
+import 'package:jaep_movies_app/infrastructure/mappers/videol_mapper.dart';
 
 class MoviedbDatasourceImpl extends MoviesDatasource {
   
@@ -51,6 +52,22 @@ class MoviedbDatasourceImpl extends MoviesDatasource {
 
     return actors;
   }
+
+  @override
+  Future<List<Video>> getYoutubeVideoById(String movieId) async{
+    final response = await dio.get('/movie/$movieId/videos');
+    final videosResponse = MovieDbVideosResponse.fromJson(response.data);
+    final videos = <Video>[];
+
+    for(final v in videosResponse.results) {
+      if(v.site == 'Youtube') {
+        final video = VideoMapper.movieDbVideoToEntity(v);
+        videos.add(video);
+      }
+    }
+
+    return videos;
+  }
   
   @override
   Future<List<Movie>> getPopular({int page = 1}) {
@@ -76,11 +93,6 @@ class MoviedbDatasourceImpl extends MoviesDatasource {
     throw UnimplementedError();
   }
 
-  @override
-  Future<List<Movie>> getYoutubeVideoById(String movieId) {
-    // TODO: implement getYoutubeVideoById
-    throw UnimplementedError();
-  }
 
   @override
   Future<List<Movie>> searchMovie(String query) {

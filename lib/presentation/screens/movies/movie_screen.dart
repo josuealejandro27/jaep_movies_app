@@ -5,6 +5,7 @@ import 'package:jaep_movies_app/domain/domain.dart';
 import 'package:jaep_movies_app/presentation/providers/actors/actors_by_movie_provider.dart';
 import 'package:jaep_movies_app/presentation/providers/movies/movie_info_provider.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:jaep_movies_app/presentation/widgets/movies/videos_from_movie_provider.dart';
 import 'package:jaep_movies_app/presentation/widgets/widgets.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
@@ -84,8 +85,14 @@ class _MovieDetails extends StatelessWidget {
         ActorsByMovie(movieId: movie.id.toString()),
 
         //TODO: Tráilers de la película
+        VideosFromMovie(movieId: movie.id.toString()),
 
         //TODO: Películas similares
+
+
+        SizedBox(
+          height: 80,
+        )
       ],
     );
   }

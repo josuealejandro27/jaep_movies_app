@@ -1,3 +1,4 @@
+export 'package:jaep_movies_app/domain/entities/video.dart';
 export 'package:jaep_movies_app/domain/datasources/movies_datasource.dart';
 export 'package:jaep_movies_app/domain/entities/actor.dart';
 export 'package:jaep_movies_app/domain/entities/movie.dart';

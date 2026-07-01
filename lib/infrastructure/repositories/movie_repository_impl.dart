@@ -1,5 +1,4 @@
 import 'package:jaep_movies_app/domain/domain.dart';
-import 'package:jaep_movies_app/infrastructure/infrastructure.dart';
 import 'package:dio/dio.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
@@ -42,7 +41,7 @@ class MovieRepositoryImpl extends MoviesRepository {
   }
 
   @override
-  Future<List<Movie>> getYoutubeVideoById(String movieId) {
+  Future<List<Video>> getYoutubeVideoById(String movieId) {
     return datasource.getYoutubeVideoById(movieId);
   }
 

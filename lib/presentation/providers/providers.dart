@@ -3,3 +3,4 @@ export 'actors/actors_repository_provider.dart';
 export 'movies/movie_info_provider.dart';
 export 'movies/movies_providers.dart';
 export 'movies/movies_repository_providers.dart';
+export 'movies/videos_from_movie_provider.dart';
