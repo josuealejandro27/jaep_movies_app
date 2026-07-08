@@ -29,7 +29,7 @@ class ActorsByMovie extends ConsumerWidget {
 
     final actors = actorsByMovie[movieId]!;
     return SizedBox(
-      height: 200,
+      height: 300,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: actors.length,
@@ -49,20 +49,27 @@ class ActorsByMovie extends ConsumerWidget {
                       width: 135,
                       fit: BoxFit.cover,
                       loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress != null) return child;
+                        if (loadingProgress == null) return child;
                         return SizedBox(
                           height: 180,
                           width: 135,
-                          child: CircularProgressIndicator(strokeWidth: 2,)
+                          child: Center(child: CircularProgressIndicator(strokeWidth: 2,))
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return SizedBox(
+                          height: 180,
+                          width: 135,
+                          child: Center(child: Text('Sin imagen'))
                         );
                       },
                     ),
                   ),
             
-                  Text(actor.name, maxLines: 2,),
+                  Text(actor.name, maxLines: 1,),
                   Text(
                     actor.character ?? '',
-                    maxLines: 2,
+                    maxLines: 1,
                     style: TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
                   )
                 ],

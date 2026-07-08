@@ -1,5 +1,4 @@
 import 'package:jaep_movies_app/domain/domain.dart';
-import 'package:dio/dio.dart';
 
 class MovieRepositoryImpl extends MoviesRepository {
   final MoviesDatasource datasource;
@@ -16,8 +15,7 @@ class MovieRepositoryImpl extends MoviesRepository {
 
   @override
   Future<List<Actor>> getActorsByMovie(String movieId) {
-    //TODO: implement getActorsByMovie
-    throw UnimplementedError();
+   return datasource.getActorsByMovie(movieId);
   }
 
   @override
